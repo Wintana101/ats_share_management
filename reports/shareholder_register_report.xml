@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_shareholder_register">
+
+        <t t-call="web.html_container">
+
+            <t t-call="web.external_layout">
+
+                <div class="page">
+
+                    <div style="text-align: center; margin-top: 20px;">
+                        <h1>SHAREHOLDER REGISTER</h1>
+                        <p>Shareholder Registration Record</p>
+                    </div>
+
+                    <div style="margin-top: 30px; font-size: 14px;">
+
+                        <p>
+                            <strong>Company:</strong>
+                            <span t-esc="env.company.name"/>
+                        </p>
+
+                        <p>
+                            <strong>Report Date:</strong>
+                            <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                        </p>
+
+                    </div>
+
+                    <div style="margin-top: 30px;">
+
+                        <table
+                            style="
+                                width: 100%;
+                                border-collapse: collapse;
+                                font-size: 12px;
+                            "
+                        >
+
+                            <thead>
+                                <tr>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: center;">
+                                        #
+                                    </th>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left;">
+                                        Shareholder Code
+                                    </th>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left;">
+                                        Shareholder Name
+                                    </th>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left;">
+                                        Registration No.
+                                    </th>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: left;">
+                                        Type
+                                    </th>
+
+                                    <th style="border: 1px solid #000; padding: 8px; text-align: center;">
+                                        Shares Owned
+                                    </th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <t
+                                    t-set="shareholders"
+                                    t-value="env['ats.shareholder'].search([
+                                        ('company_id', '=', env.company.id),
+                                        ('active', '=', True)
+                                    ], order='name asc')"
+                                />
+
+                                <t t-set="row_number" t-value="0"/>
+
+                                <t t-foreach="shareholders" t-as="shareholder">
+
+                                    <t t-set="row_number" t-value="row_number + 1"/>
+
+                                    <tr>
+
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: center;">
+                                            <span t-esc="row_number"/>
+                                        </td>
+
+                                        <td style="border: 1px solid #000; padding: 8px;">
+                                            <span t-field="shareholder.shareholder_code"/>
+                                        </td>
+
+                                        <td style="border: 1px solid #000; padding: 8px;">
+                                            <span t-field="shareholder.name"/>
+                                        </td>
+
+                                        <td style="border: 1px solid #000; padding: 8px;">
+                                            <span t-field="shareholder.registration_number"/>
+                                        </td>
+
+                                        <td style="border: 1px solid #000; padding: 8px;">
+                                            <span t-field="shareholder.shareholder_type"/>
+                                        </td>
+
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: center;">
+                                            <span t-field="shareholder.total_shares_owned"/>
+                                        </td>
+
+                                    </tr>
+
+                                </t>
+
+                                <tr>
+
+                                    <td
+                                        colspan="5"
+                                        style="
+                                            border: 1px solid #000;
+                                            padding: 10px;
+                                            text-align: right;
+                                        "
+                                    >
+                                        <strong>Total Shares Owned</strong>
+                                    </td>
+
+                                    <td
+                                        style="
+                                            border: 1px solid #000;
+                                            padding: 10px;
+                                            text-align: center;
+                                        "
+                                    >
+                                        <strong>
+                                            <span t-esc="sum(shareholders.mapped('total_shares_owned'))"/>
+                                        </strong>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                    <div style="margin-top: 60px;">
+
+                        <table style="width: 100%;">
+
+                            <tr>
+
+                                <td style="width: 50%; text-align: center;">
+
+                                    <div
+                                        style="
+                                            border-top: 1px solid #000;
+                                            width: 70%;
+                                            margin: 0 auto;
+                                        "
+                                    ></div>
+
+                                    <p>Authorized Signatory</p>
+
+                                    <strong>
+                                        <span t-esc="env.company.partner_id.name"/>
+                                    </strong>
+
+                                </td>
+
+                                <td style="width: 50%; text-align: center;">
+
+                                    <div
+                                        style="
+                                            border-top: 1px solid #000;
+                                            width: 70%;
+                                            margin: 0 auto;
+                                        "
+                                    ></div>
+
+                                    <p>Company</p>
+
+                                    <strong>
+                                        <span t-esc="env.company.name"/>
+                                    </strong>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </t>
+
+        </t>
+
+    </template>
+
+
+    <record id="action_ats_shareholder_register" model="ir.actions.report">
+
+        <field name="name">Shareholder Register</field>
+        <field name="model">ats.shareholder</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">ats_share_management.report_shareholder_register</field>
+        <field name="report_file">ats_share_management.report_shareholder_register</field>
+        <field name="binding_model_id" ref="model_ats_shareholder"/>
+        <field name="binding_type">report</field>
+        <field name="binding_view_types">form</field>
+        <field name="print_report_name">'Shareholder Register'</field>
+
+    </record>
+
+</odoo>

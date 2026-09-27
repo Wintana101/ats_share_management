@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ats_share_transfer_tree" model="ir.ui.view">
+        <field name="name">ats.share.transfer.tree</field>
+        <field name="model">ats.share.transfer</field>
+        <field name="arch" type="xml">
+            <tree string="Share Transfers">
+                <field name="name"/>
+                <field name="shareholder_id"/>
+                <field name="recipient_id"/>
+                <field name="quantity"/>
+                <field name="transfer_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ats_share_transfer_form" model="ir.ui.view">
+        <field name="name">ats.share.transfer.form</field>
+        <field name="model">ats.share.transfer</field>
+        <field name="arch" type="xml">
+
+            <form string="Share Transfer">
+
+                <header>
+
+                    <button
+                        name="action_submit"
+                        string="Submit"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                    />
+
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'submitted'"
+                    />
+
+                    <button
+                        name="action_reject"
+                        string="Reject"
+                        type="object"
+                        invisible="state != 'submitted'"
+                    />
+
+                    <button
+                        name="action_complete"
+                        string="Complete"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'approved'"
+                    />
+
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state in ('completed', 'rejected', 'cancelled')"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,submitted,approved,completed,rejected,cancelled"
+                    />
+
+                </header>
+
+                <sheet>
+
+                    <group>
+
+                        <group>
+                            <field name="name" readonly="1"/>
+                            <field name="shareholder_id"/>
+                            <field name="recipient_id"/>
+                        </group>
+
+                        <group>
+                            <field name="quantity"/>
+                            <field name="transfer_date"/>
+                            <field name="state" readonly="1"/>
+                        </group>
+
+                    </group>
+
+                    <group string="Notes">
+                        <field name="notes"/>
+                    </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+
+        </field>
+    </record>
+
+    <record id="view_ats_share_transfer_search" model="ir.ui.view">
+        <field name="name">ats.share.transfer.search</field>
+        <field name="model">ats.share.transfer</field>
+        <field name="arch" type="xml">
+
+            <search string="Share Transfers">
+
+                <field name="name"/>
+                <field name="shareholder_id"/>
+                <field name="recipient_id"/>
+                <field name="state"/>
+
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+
+                <filter
+                    name="filter_submitted"
+                    string="Submitted"
+                    domain="[('state', '=', 'submitted')]"
+                />
+
+                <filter
+                    name="filter_approved"
+                    string="Approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+
+                <filter
+                    name="filter_completed"
+                    string="Completed"
+                    domain="[('state', '=', 'completed')]"
+                />
+
+                <filter
+                    name="filter_rejected"
+                    string="Rejected"
+                    domain="[('state', '=', 'rejected')]"
+                />
+
+                <filter
+                    name="filter_cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+
+            </search>
+
+        </field>
+    </record>
+
+    <record id="action_ats_share_transfer" model="ir.actions.act_window">
+        <field name="name">Share Transfers</field>
+        <field name="res_model">ats.share.transfer</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="search_view_id"
+            ref="view_ats_share_transfer_search"
+        />
+    </record>
+
+    <menuitem
+        id="menu_ats_share_transfer"
+        name="Transfers"
+        parent="menu_ats_share_management_root"
+        action="action_ats_share_transfer"
+        sequence="25"
+    />
+
+</odoo>

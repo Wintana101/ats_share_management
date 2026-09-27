@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ats_share_purchase_tree" model="ir.ui.view">
+        <field name="name">ats.share.purchase.tree</field>
+        <field name="model">ats.share.purchase</field>
+        <field name="arch" type="xml">
+            <tree string="Share Purchases">
+                <field name="name"/>
+                <field name="shareholder_id"/>
+                <field name="company_id"/>
+                <field name="quantity"/>
+                <field name="unit_price"/>
+                <field name="total_amount"/>
+                <field name="purchase_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ats_share_purchase_form" model="ir.ui.view">
+        <field name="name">ats.share.purchase.form</field>
+        <field name="model">ats.share.purchase</field>
+        <field name="arch" type="xml">
+            <form string="Share Purchase">
+
+                <header>
+
+                    <button
+                        name="action_submit"
+                        string="Submit"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'draft'"
+                        groups="ats_share_management.group_sms_officer,ats_share_management.group_sms_administrator"
+                    />
+
+                    <button
+                        name="action_approve"
+                        string="Approve"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'submitted'"
+                        groups="ats_share_management.group_sms_administrator"
+                    />
+
+                    <button
+                        name="action_complete"
+                        string="Complete"
+                        type="object"
+                        class="oe_highlight"
+                        invisible="state != 'approved'"
+                        groups="ats_share_management.group_sms_administrator"
+                    />
+
+                    <button
+                        name="action_cancel"
+                        string="Cancel"
+                        type="object"
+                        invisible="state in ('completed', 'cancelled')"
+                        groups="ats_share_management.group_sms_officer,ats_share_management.group_sms_administrator"
+                    />
+
+                    <field
+                        name="state"
+                        widget="statusbar"
+                        statusbar_visible="draft,submitted,approved,completed,cancelled"
+                    />
+
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+
+                        <group string="Purchase Information">
+
+                            <field
+                                name="shareholder_id"
+                                readonly="state != 'draft'"
+                            />
+
+                            <field
+                                name="company_id"
+                                readonly="1"
+                            />
+
+                            <field
+                                name="quantity"
+                                readonly="state != 'draft'"
+                            />
+
+                            <field
+                                name="purchase_date"
+                                readonly="state != 'draft'"
+                            />
+
+                        </group>
+
+                        <group string="Pricing">
+
+                            <field
+                                name="unit_price"
+                                readonly="1"
+                            />
+
+                            <field
+                                name="total_amount"
+                                readonly="1"
+                            />
+
+                        </group>
+
+                    </group>
+
+                    <group string="Notes">
+                        <field
+                            name="notes"
+                            readonly="state not in ('draft', 'submitted')"
+                        />
+                    </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="view_ats_share_purchase_search" model="ir.ui.view">
+        <field name="name">ats.share.purchase.search</field>
+        <field name="model">ats.share.purchase</field>
+        <field name="arch" type="xml">
+
+            <search string="Share Purchases">
+
+                <field name="name"/>
+                <field name="shareholder_id"/>
+                <field name="company_id"/>
+                <field name="state"/>
+
+                <filter
+                    name="filter_draft"
+                    string="Draft"
+                    domain="[('state', '=', 'draft')]"
+                />
+
+                <filter
+                    name="filter_submitted"
+                    string="Submitted"
+                    domain="[('state', '=', 'submitted')]"
+                />
+
+                <filter
+                    name="filter_approved"
+                    string="Approved"
+                    domain="[('state', '=', 'approved')]"
+                />
+
+                <filter
+                    name="filter_completed"
+                    string="Completed"
+                    domain="[('state', '=', 'completed')]"
+                />
+
+                <filter
+                    name="filter_cancelled"
+                    string="Cancelled"
+                    domain="[('state', '=', 'cancelled')]"
+                />
+
+                <group expand="0" string="Group By">
+
+                    <filter
+                        name="group_by_state"
+                        string="Status"
+                        context="{'group_by': 'state'}"
+                    />
+
+                    <filter
+                        name="group_by_company"
+                        string="Company"
+                        context="{'group_by': 'company_id'}"
+                    />
+
+                    <filter
+                        name="group_by_shareholder"
+                        string="Shareholder"
+                        context="{'group_by': 'shareholder_id'}"
+                    />
+
+                </group>
+
+            </search>
+
+        </field>
+    </record>
+
+    <record
+        id="action_ats_share_purchase"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Share Purchases</field>
+        <field name="res_model">ats.share.purchase</field>
+        <field name="view_mode">tree,form</field>
+        <field
+            name="search_view_id"
+            ref="view_ats_share_purchase_search"
+        />
+
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first share purchase
+            </p>
+            <p>
+                Share purchases allocate shares from the company's
+                available share pool to a shareholder.
+            </p>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_ats_share_purchase"
+        name="Purchases"
+        parent="menu_ats_share_management_root"
+        action="action_ats_share_purchase"
+        sequence="20"
+    />
+
+</odoo>

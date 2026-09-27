@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ats_share_settings_form" model="ir.ui.view">
+        <field name="name">ats.share.settings.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="Share Management Settings">
+
+                <header>
+                    <button name="execute"
+                            string="Save"
+                            type="object"
+                            class="oe_highlight"
+                            groups="ats_share_management.group_sms_administrator"/>
+                </header>
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>Share Management Settings</h1>
+                    </div>
+
+                    <group string="Share Configuration">
+                        <group>
+                            <field name="total_shares_available"
+                                   groups="ats_share_management.group_sms_administrator"/>
+                            <field name="price_per_share"
+                                   groups="ats_share_management.group_sms_administrator"/>
+                        </group>
+
+                        <group>
+                            <field name="shares_sold"
+                                   readonly="1"
+                                   groups="ats_share_management.group_sms_administrator"/>
+                            <field name="shares_remaining"
+                                   readonly="1"
+                                   groups="ats_share_management.group_sms_administrator"/>
+                        </group>
+                    </group>
+
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record id="action_ats_share_settings" model="ir.actions.act_window">
+        <field name="name">Share Management Settings</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_ats_share_settings_form"/>
+        <field name="groups_id"
+               eval="[(4, ref('ats_share_management.group_sms_administrator'))]"/>
+    </record>
+
+    <menuitem id="menu_ats_share_settings"
+              name="Settings"
+              parent="menu_ats_share_management_root"
+              action="action_ats_share_settings"
+              sequence="40"
+              groups="ats_share_management.group_sms_administrator"/>
+
+</odoo>

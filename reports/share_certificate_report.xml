@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_share_certificate">
+
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+
+                <t t-call="web.external_layout">
+
+                    <div class="page">
+
+                        <div style="text-align: center; margin-top: 30px;">
+                            <h1>SHARE CERTIFICATE</h1>
+                            <p>Certificate of Share Ownership</p>
+                        </div>
+
+                        <div style="margin-top: 50px; font-size: 16px;">
+
+                            <p>
+                                This is to certify that:
+                            </p>
+
+                            <h2 style="text-align: center; margin: 25px 0;">
+                                <span t-field="o.name"/>
+                            </h2>
+
+                            <p>
+                                Shareholder Code:
+                                <strong>
+                                    <span t-field="o.shareholder_code"/>
+                                </strong>
+                            </p>
+
+                            <p>
+                                ID / Registration Number:
+                                <strong>
+                                    <span t-field="o.registration_number"/>
+                                </strong>
+                            </p>
+
+                            <p style="margin-top: 30px;">
+                                is registered as a shareholder of
+                                <strong>
+                                    <span t-field="o.company_id.name"/>
+                                </strong>
+                            </p>
+
+                            <p style="margin-top: 25px;">
+                                and currently owns:
+                            </p>
+
+                            <div style="text-align: center; border: 2px solid #555; padding: 25px; margin: 25px 0;">
+
+                                <span
+                                    t-field="o.total_shares_owned"
+                                    style="font-size: 36px; font-weight: bold;"
+                                />
+
+                                <p style="font-size: 18px;">
+                                    Shares
+                                </p>
+
+                            </div>
+
+                            <p>
+                                Registration Date:
+                                <strong>
+                                    <span t-field="o.registration_date"/>
+                                </strong>
+                            </p>
+
+                            <p>
+                                Certificate Date:
+                                <strong>
+                                    <span t-esc="time.strftime('%d/%m/%Y')"/>
+                                </strong>
+                            </p>
+
+                        </div>
+
+                        <div style="margin-top: 80px;">
+
+                            <table style="width: 100%;">
+
+                                <tr>
+
+                                    <td style="width: 50%; text-align: center;">
+
+                                        <div style="border-top: 1px solid #000; width: 70%; margin: 0 auto;"></div>
+
+                                        <p>
+                                            Authorized Signatory
+                                        </p>
+
+                                        <strong>
+                                            <span t-esc="o.company_id.partner_id.name"/>
+                                        </strong>
+
+                                    </td>
+
+                                    <td style="width: 50%; text-align: center;">
+
+                                        <div style="border-top: 1px solid #000; width: 70%; margin: 0 auto;"></div>
+
+                                        <p>
+                                            Company
+                                        </p>
+
+                                        <strong>
+                                            <span t-field="o.company_id.name"/>
+                                        </strong>
+
+                                    </td>
+
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </t>
+
+            </t>
+
+        </t>
+
+    </template>
+
+
+    <record id="action_ats_share_certificate" model="ir.actions.report">
+
+        <field name="name">Share Certificate</field>
+
+        <field name="model">ats.shareholder</field>
+
+        <field name="report_type">qweb-pdf</field>
+
+        <field name="report_name">ats_share_management.report_share_certificate</field>
+        <field name="report_file">ats_share_management.report_share_certificate</field>
+
+        <field name="binding_model_id" ref="model_ats_shareholder"/>
+
+        <field name="binding_type">report</field>
+
+        <field name="binding_view_types">form</field>
+
+        <field name="print_report_name">'Share Certificate - %s' % (object.name)</field>
+
+    </record>
+
+</odoo>

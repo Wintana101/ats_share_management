@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ats_share_dashboard_form" model="ir.ui.view">
+        <field name="name">ats.share.dashboard.form</field>
+        <field name="model">ats.share.dashboard</field>
+        <field name="arch" type="xml">
+
+            <form
+                string="Share Management Dashboard"
+                create="0"
+                edit="0"
+                delete="0"
+            >
+
+                <sheet>
+
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+
+                    <group>
+                        <field name="company_id" readonly="1"/>
+                    </group>
+
+                    <div class="row mt16 mb16">
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="card text-center p-3">
+                                <h3>Total Shares</h3>
+                                <div class="display-4">
+                                    <field
+                                        name="total_shares_available"
+                                        readonly="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="card text-center p-3">
+                                <h3>Shares Sold</h3>
+                                <div class="display-4">
+                                    <field
+                                        name="shares_sold"
+                                        readonly="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            <div class="card text-center p-3">
+                                <h3>Shares Remaining</h3>
+                                <div class="display-4">
+                                    <field
+                                        name="shares_remaining"
+                                        readonly="1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <separator string="Top 10 Shareholders"/>
+
+                    <field
+                        name="top_shareholder_ids"
+                        nolabel="1"
+                        readonly="1"
+                    >
+                        <tree
+                            create="0"
+                            edit="0"
+                            delete="0"
+                        >
+                            <field name="rank"/>
+                            <field name="shareholder_id"/>
+                            <field name="shares_owned"/>
+                            <field name="ownership_percentage"/>
+                        </tree>
+                    </field>
+
+                </sheet>
+
+            </form>
+
+        </field>
+    </record>
+
+    <record
+        id="action_ats_share_dashboard_server"
+        model="ir.actions.server"
+    >
+        <field name="name">Share Management Dashboard</field>
+        <field name="model_id" ref="model_ats_share_dashboard"/>
+        <field name="state">code</field>
+        <field name="code">
+action = model.action_open_dashboard()
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_ats_share_dashboard"
+        name="Dashboard"
+        parent="menu_ats_share_management_root"
+        action="action_ats_share_dashboard_server"
+        sequence="5"
+    />
+
+</odoo>

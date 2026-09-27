@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="demo_shareholder_abebe" model="ats.shareholder">
+        <field name="name">Abebe Kebede</field>
+        <field name="registration_number">DEMO-REG-0001</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000001</field>
+        <field name="email">abebe.kebede@example.com</field>
+        <field name="address">Addis Ababa, Bole</field>
+        <field name="bank_name">Commercial Bank of Ethiopia</field>
+        <field name="bank_account">1000000001</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_hana" model="ats.shareholder">
+        <field name="name">Hana Tesfaye</field>
+        <field name="registration_number">DEMO-REG-0002</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000002</field>
+        <field name="email">hana.tesfaye@example.com</field>
+        <field name="address">Addis Ababa, Yeka</field>
+        <field name="bank_name">Awash Bank</field>
+        <field name="bank_account">1000000002</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_dawit" model="ats.shareholder">
+        <field name="name">Dawit Alemu</field>
+        <field name="registration_number">DEMO-REG-0003</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000003</field>
+        <field name="email">dawit.alemu@example.com</field>
+        <field name="address">Addis Ababa, Kirkos</field>
+        <field name="bank_name">Dashen Bank</field>
+        <field name="bank_account">1000000003</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_selamawit" model="ats.shareholder">
+        <field name="name">Selamawit Bekele</field>
+        <field name="registration_number">DEMO-REG-0004</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000004</field>
+        <field name="email">selamawit.bekele@example.com</field>
+        <field name="address">Addis Ababa, Arada</field>
+        <field name="bank_name">Bank of Abyssinia</field>
+        <field name="bank_account">1000000004</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_biruk" model="ats.shareholder">
+        <field name="name">Biruk Girma</field>
+        <field name="registration_number">DEMO-REG-0005</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000005</field>
+        <field name="email">biruk.girma@example.com</field>
+        <field name="address">Addis Ababa, Lideta</field>
+        <field name="bank_name">Awash Bank</field>
+        <field name="bank_account">1000000005</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_meron" model="ats.shareholder">
+        <field name="name">Meron Worku</field>
+        <field name="registration_number">DEMO-REG-0006</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000006</field>
+        <field name="email">meron.worku@example.com</field>
+        <field name="address">Addis Ababa, Nifas Silk</field>
+        <field name="bank_name">Commercial Bank of Ethiopia</field>
+        <field name="bank_account">1000000006</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_elias" model="ats.shareholder">
+        <field name="name">Elias Tadesse</field>
+        <field name="registration_number">DEMO-REG-0007</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000007</field>
+        <field name="email">elias.tadesse@example.com</field>
+        <field name="address">Addis Ababa, Kolfe</field>
+        <field name="bank_name">Dashen Bank</field>
+        <field name="bank_account">1000000007</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_rahel" model="ats.shareholder">
+        <field name="name">Rahel Mengistu</field>
+        <field name="registration_number">DEMO-REG-0008</field>
+        <field name="shareholder_type">individual</field>
+        <field name="phone">0911000008</field>
+        <field name="email">rahel.mengistu@example.com</field>
+        <field name="address">Addis Ababa, Gullele</field>
+        <field name="bank_name">Bank of Abyssinia</field>
+        <field name="bank_account">1000000008</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_sunrise" model="ats.shareholder">
+        <field name="name">Sunrise Trading PLC</field>
+        <field name="registration_number">DEMO-REG-0009</field>
+        <field name="shareholder_type">corporate</field>
+        <field name="phone">0111000009</field>
+        <field name="email">info@sunrisetrading.example.com</field>
+        <field name="address">Addis Ababa, Bole</field>
+        <field name="bank_name">Commercial Bank of Ethiopia</field>
+        <field name="bank_account">1000000009</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <record id="demo_shareholder_horizon" model="ats.shareholder">
+        <field name="name">Horizon Investment PLC</field>
+        <field name="registration_number">DEMO-REG-0010</field>
+        <field name="shareholder_type">corporate</field>
+        <field name="phone">0111000010</field>
+        <field name="email">info@horizoninvestment.example.com</field>
+        <field name="address">Addis Ababa, Kirkos</field>
+        <field name="bank_name">Dashen Bank</field>
+        <field name="bank_account">1000000010</field>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="status">active</field>
+        <field name="active">True</field>
+    </record>
+
+    <data noupdate="1">
+
+    <record id="demo_transaction_abebe_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_abebe"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">100</field>
+        <field name="transaction_date">2026-01-15 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_hana_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_hana"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">80</field>
+        <field name="transaction_date">2026-01-20 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_dawit_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_dawit"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">60</field>
+        <field name="transaction_date">2026-02-05 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_selamawit_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_selamawit"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">50</field>
+        <field name="transaction_date">2026-02-10 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_biruk_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_biruk"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">40</field>
+        <field name="transaction_date">2026-02-18 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_meron_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_meron"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">30</field>
+        <field name="transaction_date">2026-03-02 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_elias_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_elias"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">20</field>
+        <field name="transaction_date">2026-03-10 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_rahel_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_rahel"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">10</field>
+        <field name="transaction_date">2026-03-15 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_sunrise_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_sunrise"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">15</field>
+        <field name="transaction_date">2026-03-20 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_horizon_purchase" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_horizon"/>
+        <field name="transaction_type">purchase</field>
+        <field name="quantity">5</field>
+        <field name="transaction_date">2026-03-25 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo purchase transaction.</field>
+    </record>
+
+    <record id="demo_transaction_abebe_to_hana" model="ats.share.transaction">
+        <field name="shareholder_id" ref="demo_shareholder_abebe"/>
+        <field name="recipient_id" ref="demo_shareholder_hana"/>
+        <field name="transaction_type">transfer</field>
+        <field name="quantity">20</field>
+        <field name="transaction_date">2026-04-01 09:00:00</field>
+        <field name="state">completed</field>
+        <field name="notes">Demo share transfer.</field>
+    </record>
+    
+    </data>
+
+</odoo>

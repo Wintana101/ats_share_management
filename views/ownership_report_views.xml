@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_ats_shareholder_ownership_tree" model="ir.ui.view">
+        <field name="name">ats.shareholder.ownership.tree</field>
+        <field name="model">ats.shareholder</field>
+        <field name="arch" type="xml">
+            <tree
+                string="Ownership Breakdown"
+                create="0"
+                edit="0"
+                delete="0"
+            >
+                <field name="shareholder_code"/>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="total_shares_owned"/>
+                <field name="shares_sold"/>
+                <field name="ownership_percentage"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_ats_shareholder_ownership_pivot" model="ir.ui.view">
+        <field name="name">ats.shareholder.ownership.pivot</field>
+        <field name="model">ats.shareholder</field>
+        <field name="arch" type="xml">
+            <pivot string="Ownership Breakdown">
+                <field name="company_id" type="row"/>
+                <field name="name" type="row"/>
+                <field name="total_shares_owned" type="measure"/>
+                <field name="ownership_percentage" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="view_ats_shareholder_ownership_graph" model="ir.ui.view">
+        <field name="name">ats.shareholder.ownership.graph</field>
+        <field name="model">ats.shareholder</field>
+        <field name="arch" type="xml">
+            <graph string="Ownership Breakdown" type="pie">
+                <field name="name"/>
+                <field name="total_shares_owned"/>
+            </graph>
+        </field>
+    </record>
+
+    <record id="view_ats_shareholder_ownership_search" model="ir.ui.view">
+        <field name="name">ats.shareholder.ownership.search</field>
+        <field name="model">ats.shareholder</field>
+        <field name="arch" type="xml">
+
+            <search string="Ownership Breakdown">
+
+                <field name="name"/>
+                <field name="shareholder_code"/>
+                <field name="company_id"/>
+
+                <filter
+                    name="filter_active"
+                    string="Active Shareholders"
+                    domain="[('active', '=', True)]"
+                />
+
+                <filter
+                    name="filter_has_shares"
+                    string="Shareholders With Shares"
+                    domain="[('total_shares_owned', '>', 0)]"
+                />
+
+                <group expand="0" string="Group By">
+
+                    <filter
+                        name="group_by_company"
+                        string="Company"
+                        context="{'group_by': 'company_id'}"
+                    />
+
+                    <filter
+                        name="group_by_type"
+                        string="Shareholder Type"
+                        context="{'group_by': 'shareholder_type'}"
+                    />
+
+                </group>
+
+            </search>
+
+        </field>
+    </record>
+
+    <record id="action_ats_shareholder_ownership" model="ir.actions.act_window">
+
+        <field name="name">Ownership Breakdown</field>
+
+        <field name="res_model">ats.shareholder</field>
+
+        <field name="view_mode">tree,pivot,graph</field>
+
+        <field
+            name="search_view_id"
+            ref="view_ats_shareholder_ownership_search"
+        />
+
+        <field name="domain">
+            [('active', '=', True)]
+        </field>
+
+        <field name="context">
+            {'search_default_filter_has_shares': 1}
+        </field>
+
+    </record>
+
+    <menuitem
+        id="menu_ats_shareholder_ownership"
+        name="Ownership Breakdown"
+        parent="menu_ats_share_management_root"
+        action="action_ats_shareholder_ownership"
+        sequence="35"
+    />
+
+</odoo>

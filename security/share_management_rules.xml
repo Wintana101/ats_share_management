@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="rule_ats_shareholder_admin" model="ir.rule">
+        <field name="name">Shareholder - Administrator</field>
+        <field name="model_id" ref="model_ats_shareholder"/>
+        <field name="groups" eval="[(4, ref('group_sms_administrator'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_shareholder_officer" model="ir.rule">
+        <field name="name">Shareholder - Officer</field>
+        <field name="model_id" ref="model_ats_shareholder"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_shareholder_viewer" model="ir.rule">
+        <field name="name">Shareholder - Viewer</field>
+        <field name="model_id" ref="model_ats_shareholder"/>
+        <field name="groups" eval="[(4, ref('group_sms_viewer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_purchase_admin" model="ir.rule">
+        <field name="name">Share Purchase - Administrator</field>
+        <field name="model_id" ref="model_ats_share_purchase"/>
+        <field name="groups" eval="[(4, ref('group_sms_administrator'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_share_purchase_officer" model="ir.rule">
+        <field name="name">Share Purchase - Officer Draft Only</field>
+        <field name="model_id" ref="model_ats_share_purchase"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">
+            [
+                ('company_id', 'in', company_ids),
+                ('state', '=', 'draft')
+            ]
+        </field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_purchase_officer_read_all" model="ir.rule">
+        <field name="name">Share Purchase - Officer Read All</field>
+        <field name="model_id" ref="model_ats_share_purchase"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_purchase_viewer" model="ir.rule">
+        <field name="name">Share Purchase - Viewer</field>
+        <field name="model_id" ref="model_ats_share_purchase"/>
+        <field name="groups" eval="[(4, ref('group_sms_viewer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_transfer_admin" model="ir.rule">
+        <field name="name">Share Transfer - Administrator</field>
+        <field name="model_id" ref="model_ats_share_transfer"/>
+        <field name="groups" eval="[(4, ref('group_sms_administrator'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_share_transfer_officer" model="ir.rule">
+        <field name="name">Share Transfer - Officer Draft Only</field>
+        <field name="model_id" ref="model_ats_share_transfer"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">
+            [
+                ('company_id', 'in', company_ids),
+                ('state', '=', 'draft')
+            ]
+        </field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_transfer_officer_read_all" model="ir.rule">
+        <field name="name">Share Transfer - Officer Read All</field>
+        <field name="model_id" ref="model_ats_share_transfer"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_transfer_viewer" model="ir.rule">
+        <field name="name">Share Transfer - Viewer</field>
+        <field name="model_id" ref="model_ats_share_transfer"/>
+        <field name="groups" eval="[(4, ref('group_sms_viewer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_transaction_admin" model="ir.rule">
+        <field name="name">Share Transaction - Administrator</field>
+        <field name="model_id" ref="model_ats_share_transaction"/>
+        <field name="groups" eval="[(4, ref('group_sms_administrator'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_share_transaction_officer" model="ir.rule">
+        <field name="name">Share Transaction - Officer Read Only</field>
+        <field name="model_id" ref="model_ats_share_transaction"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_transaction_viewer" model="ir.rule">
+        <field name="name">Share Transaction - Viewer</field>
+        <field name="model_id" ref="model_ats_share_transaction"/>
+        <field name="groups" eval="[(4, ref('group_sms_viewer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+
+    <record id="rule_ats_share_dashboard_admin" model="ir.rule">
+        <field name="name">Share Dashboard - Administrator</field>
+        <field name="model_id" ref="model_ats_share_dashboard"/>
+        <field name="groups" eval="[(4, ref('group_sms_administrator'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_share_dashboard_officer" model="ir.rule">
+        <field name="name">Share Dashboard - Officer</field>
+        <field name="model_id" ref="model_ats_share_dashboard"/>
+        <field name="groups" eval="[(4, ref('group_sms_officer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="rule_ats_share_dashboard_viewer" model="ir.rule">
+        <field name="name">Share Dashboard - Viewer</field>
+        <field name="model_id" ref="model_ats_share_dashboard"/>
+        <field name="groups" eval="[(4, ref('group_sms_viewer'))]"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="0"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+</odoo>
